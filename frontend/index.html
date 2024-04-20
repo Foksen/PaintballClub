@@ -19,7 +19,7 @@
                     <ul class="header-links-list">    
                         <li><a href="#section-options" class="header-link">Услуги</a></li>
                         <li><a href="#section-reviews" class="header-link">Отзывы</a></li>
-                        <li><a href="" class="header-link">Галерея</a></li>
+                        <li><a href="#section-gallery" class="header-link">Галерея</a></li>
                         <li><a href="" class="header-link">Контакты</a></li>
                         <li class="header-li-phone"><a href="tel:+79123456789" class="header-link header-link-phone">+7 (912) 345-67-89</a></li>
                     </ul>
@@ -125,7 +125,7 @@
                         <div class="reviews-card-text">
                             Хороший клуб, близко к моему дому. Каждый месец собираюсь c друзьями и играю здесь. Администратор помогает в случае возникновения каких-либо проблем. Поле хорошее, чистое. Оружие качественное, подобные аналоги в магазинах стоят довольно дорого.
                         </div>
-                        <button class="reviews-card-btn">Читать полностью</btn>
+                        <button class="reviews-card-btn">Читать полностью</button>
                     </div>
 
                     <div class="reviews-card">
@@ -147,6 +147,38 @@
                 
             </div>
         </section>
+
+        <section class="section-container section-gallery" id="section-gallery">
+            <div class="wrapper">
+                <h2 class="section-title">Галерея</h2>
+
+                <div class="gallery-container">
+                    <div class="gallery-selected-photo-container" id="gallery-selected-photo-container"></div>
+
+                    <div class="gallery-previews-container">
+                        <input type="radio" id="gallery-rb1" class="gallery-preview-rb" name="gallery-photo-selector" checked>
+                        <label for="gallery-rb1" class="gallery-preview-label">
+                            <img src="./assets/images/GalleryPhoto1.jpg" alt="" class="gallery-preview-photo">
+                        </label>
+
+                        <input type="radio" id="gallery-rb2" class="gallery-preview-rb" name="gallery-photo-selector">
+                        <label for="gallery-rb2" class="gallery-preview-label">
+                            <img src="./assets/images/GalleryPhoto2.jpg" alt="" class="gallery-preview-photo">
+                        </label>
+
+                        <input type="radio" id="gallery-rb3" class="gallery-preview-rb" name="gallery-photo-selector">
+                        <label for="gallery-rb3" class="gallery-preview-label">
+                            <img src="./assets/images/GalleryPhoto3.jpg" alt="" class="gallery-preview-photo">
+                        </label>
+
+                        <input type="radio" id="gallery-rb4" class="gallery-preview-rb" name="gallery-photo-selector">
+                        <label for="gallery-rb4" class="gallery-preview-label">
+                            <img src="./assets/images/GalleryPhoto4.jpg" alt="" class="gallery-preview-photo">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         
@@ -154,5 +186,6 @@
 
     <script src="./scripts/header-menu.js"></script>
     <script src="./scripts/header-fix.js"></script>
+    <script src="./scripts/gallery.js"></script>
 </body>
 </html>

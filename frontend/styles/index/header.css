@@ -1,7 +1,3 @@
-@import url(./general.css);
-
-/* HEADER */
-
 .header {
     position: absolute;
     top: 0;
@@ -72,7 +68,6 @@
 }
 
 
-/* HEADER MENU ICON */
 
 .header-menu-label {
     position: absolute;
@@ -138,7 +133,6 @@
 }
 
 
-/* ADAPTIVE */
 
 @media (max-width: 1280px) {
     .header-nav {
