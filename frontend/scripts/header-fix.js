@@ -31,6 +31,3 @@ window.addEventListener("scroll", function () {
         unfixHeader();
     }
 });
-
-
-window.dispatchEvent(new Event("scroll"));

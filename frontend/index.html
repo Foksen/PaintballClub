@@ -31,12 +31,12 @@
         <section class="section-main" id="section-main">
             <img src="./assets/images/MainPlayer1.png" alt="Player1" class="main-player main-player-left">
             <img src="./assets/images/MainPlayer2.png" alt="Player2" class="main-player main-player-right">
-            <div class="wrapper">
+            <div class="wrapper main-content">
                 <h1 class="main-title">Пейнтбольный<br>клуб МИРЭА</h1>
                 <p class="main-text">Приглашает вас на пробную тренировку в собственном оборудованном комплексе. Снаряжение выдаётся участникам бесплатно. Подробные условия акции смотрите в пакетах услуг</p>
-                <div class="main-buttons">
-                    <a href="#section-options" class="button-skew button-orange">Записаться</a>
-                    <a href="#section-reviews" class="button-skew button-white">Отзывы</a>
+                <div class="double-buttons-group">
+                    <button class="button-skew button-orange">Записаться</button>
+                    <button class="button-skew button-white">Отзывы</button>
                 </div>
             </div>
         </section>
@@ -93,28 +93,58 @@
                         <p class="options-card-price">16.999 ₽</p>
                     </div>
                 </div>
-                <button class="section-button button-skew button-orange">Записаться</button>
+
+                <div class="section-button-container">
+                    <button class="section-button button-skew button-orange">Записаться</button>
+                </div>
+
             </div>
         </section>
     
         <section class="section-container section-reviews" id="section-reviews">
             <div class="wrapper">
                 <h2 class="section-title">Отзывы</h2>
-                <div class="reviews-slider">
-                    <button class="reviews-slider-btn reviews-slider-btn-prev">
-                        <svg class="reviews-slider-btn-icon reviews-slider-btn-icon-prev" height="512px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 "/></svg>
-                    </button>
 
-                    <div class="reviews-container">
-                        
+                <div class="reviews-container">
+                    <div class="reviews-card">
+                        <div class="reviews-card-head">
+                            <div class="reviews-card-name">Игорь Жолобов</div>
+                            <div class="reviews-card-exp">1 год</div>
+                        </div>
+                        <div class="reviews-card-text">
+                            Очень понравился ваш клуб. Снаряжение выдали новое, площадка хорошо подходит для пейтбольных боёв. Обязательно приду ещё!
+                        </div>
+                        <button class="reviews-card-btn">Читать полностью</button>
                     </div>
 
-                    <button class="reviews-slider-btn reviews-slider-btn-next">
-                        <svg class="reviews-slider-btn-icon reviews-slider-btn-icon-next" height="512px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 "/></svg>
-                    </button>
+                    <div class="reviews-card">
+                        <div class="reviews-card-head">
+                            <div class="reviews-card-name">Василий Пупки</div>
+                            <div class="reviews-card-exp">3 года</div>
+                        </div>
+                        <div class="reviews-card-text">
+                            Хороший клуб, близко к моему дому. Каждый месец собираюсь c друзьями и играю здесь. Администратор помогает в случае возникновения каких-либо проблем. Поле хорошее, чистое. Оружие качественное, подобные аналоги в магазинах стоят довольно дорого.
+                        </div>
+                        <button class="reviews-card-btn">Читать полностью</btn>
+                    </div>
+
+                    <div class="reviews-card">
+                        <div class="reviews-card-head">
+                            <div class="reviews-card-name">Иван Иваныч</div>
+                            <div class="reviews-card-exp">5 лет</div>
+                        </div>
+                        <div class="reviews-card-text">
+                            Лучшего клуба в Москве не найти! Цены демократичные - в других клубах берут намного больше. У клуба очень хорошее название, а главное - оригинальное. Отдельное спасибо автору, придумавшему его. Пойду ещё поиграю.
+                        </div>
+                        <button class="reviews-card-btn">Читать полностью</button>
+                    </div>
                 </div>
 
-                <button class="section-button button-skew button-purple">Написать отзыв</button>
+                <div class="section-button-container double-buttons-group">
+                    <button class="button-skew button-purple">Написать отзыв</button>
+                    <button class="button-skew button-white">Все отзывы</button>
+                </div>
+                
             </div>
         </section>
     </main>
@@ -124,6 +154,5 @@
 
     <script src="./scripts/header-menu.js"></script>
     <script src="./scripts/header-fix.js"></script>
-    <script src="./scripts/slider-reviews.js"></script>
 </body>
 </html>

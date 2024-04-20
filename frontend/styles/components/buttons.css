@@ -56,6 +56,12 @@
     background: linear-gradient(132.27deg, rgb(163, 61, 231) -4.883%,rgb(133, 51, 187) 49.014%,rgb(111, 14, 176) 105.111%);
 }
 
+.double-buttons-group {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+    gap: 2rem;
+}
 
 /* ADAPTIVE */
 
@@ -72,4 +78,11 @@
         min-width: 12rem;
         font-size: 1.25rem;
     }   
+}
+
+@media (max-width: 680px) {
+    .double-buttons-group {
+        flex-direction: column;
+        gap: 2rem;
+    }
 }
