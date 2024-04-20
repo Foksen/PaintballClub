@@ -1,0 +1,120 @@
+.section-main {
+    position: relative;
+    height: 100vh;
+    background-image: url(./../../assets/images/MainBG.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.main-title {
+    position: relative;
+    margin: 0 auto 1.875rem;
+    max-width: 60rem;
+    text-align: center;
+    line-height: 1em;
+    text-transform: uppercase;
+    z-index: 0;
+}
+
+.main-text {
+    position: relative;
+    margin: 0 auto 3.75rem;
+    padding: 0 1rem;
+    max-width: 46rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--surface-0);
+    line-height: 1.25em;
+    text-align: center;
+    z-index: 1;
+}
+
+.main-player {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 80%;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.main-player-left {
+    transform: translateX(-132%);
+}
+
+.main-player-right {
+    transform: translateX(25%);
+}
+
+
+
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+      background-attachment: scroll;
+    }
+}
+
+@media (max-width: 1280px) {
+    .main-player-left {
+        display: none;
+    }
+
+    .main-player-right {
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+}
+
+@media (max-width: 960px) {
+    .main-title {
+        font-size: 4.875rem;
+    }
+
+    .main-text {
+        font-size: 1.375rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 4rem;
+    }
+
+    .main-text {
+        max-width: 40rem;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 680px) {
+    .main-title {
+        font-size: 3.25rem;
+    }
+
+    .main-text {
+        max-width: 36rem;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 580px) {
+    .main-title {
+        font-size: 2.75rem;
+    }
+
+    .main-text {
+        max-width: 32rem;
+    }
+}
