@@ -1,0 +1,138 @@
+.section-title-about {
+    text-align: start;
+}
+
+.contacts-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.contacts-info-container {
+    flex-grow: 2;
+    min-width: 32rem;
+}
+
+.contacts-map-container {
+    flex-grow: 3;
+    background-color: red;
+}
+
+.contacts-map {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.contacts-block {
+    margin-bottom: 2rem;
+}
+
+.contacts-block:last-child {
+    margin-bottom: 0;
+}
+
+.contacts-subtitle {
+    margin-bottom: 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--surface-0);
+}
+
+.contacts-text {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.375em;
+    color: var(--surface-30);
+}
+
+.contacts-text:last-child {
+    margin-bottom: 0;
+}
+
+.contacts-sn-container {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.contacts-sn {
+    position: relative;
+    padding: 0.875rem;
+    width: 3.75rem;
+    height: 3.75rem;
+    background-color: var(--surface-0);
+    border-radius: 100%;
+}
+
+#contacts-sn-vk::before {
+    background-color: var(--vk);
+}
+
+#contacts-sn-whatsapp::before {
+    background-color: var(--whatsapp);
+}
+
+#contacts-sn-telegram::before {
+    background-color: var(--telegram);
+}
+
+.contacts-sn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    scale: 1;
+    z-index: 1;
+    transition: transform 0.5s;
+    border-radius: 100%;
+}
+
+.contacts-sn:hover::before {
+    transform: scale(0);
+}
+
+.contacts-sn-icon {
+    position: relative;
+    fill: white;
+    z-index: 2;
+    transition: fill 0.5s;
+}
+
+.contacts-sn:hover .contacts-sn-icon {
+    fill: var(--surface-800);
+}
+
+
+#contacts-sn-vk:hover .contacts-sn-icon {
+    fill: var(--vk);
+}
+
+#contacts-sn-whatsapp:hover .contacts-sn-icon {
+    fill: var(--whatsapp);
+}
+
+#contacts-sn-telegram:hover .contacts-sn-icon {
+    fill: var(--telegram);
+}
+
+
+
+@media (max-width: 1024px) {
+    .contacts-container {
+        flex-direction: column;
+        align-items: start;
+        gap: 4rem;
+    }
+
+    .contacts-block {
+        margin-bottom: 3rem;
+    }
+
+    .contacts-info-container {
+        min-width: auto;
+    }
+}
