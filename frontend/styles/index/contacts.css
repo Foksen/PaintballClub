@@ -15,7 +15,7 @@
 
 .contacts-map-container {
     flex-grow: 3;
-    background-color: red;
+    border: 1rem solid var(--surface-600);
 }
 
 .contacts-map {
