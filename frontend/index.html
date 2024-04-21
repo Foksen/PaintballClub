@@ -36,7 +36,7 @@
                 <h1 class="main-title">Пейнтбольный<br>клуб МИРЭА</h1>
                 <p class="main-text">Приглашает вас на пробную тренировку в собственном оборудованном комплексе. Снаряжение выдаётся участникам бесплатно. Подробные условия акции смотрите в пакетах услуг</p>
                 <div class="double-buttons-group">
-                    <button class="button-skew button-orange">Записаться</button>
+                    <button class="button-skew button-orange btn-open-modal-registration">Записаться</button>
                     <button class="button-skew button-white">Отзывы</button>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="section-button-container">
-                    <button class="section-button button-skew button-orange">Записаться</button>
+                    <button class="section-button button-skew button-orange btn-open-modal-registration">Записаться</button>
                 </div>
 
             </div>
@@ -242,9 +242,38 @@
         <p class="footer-text">Made by <a href="https://t.me/savage_foksen" class="footer-link" target="_blank">Foksen</a> @ <span class="current-year"></span></p>
     </footer>
 
-    <div class="modal">
+    <div class="modal" id="modal-registration">
         <div class="modal-panel">
-            asd
+            <button class="panel-close-btn">
+                <svg class="panel-close-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                </svg>
+            </button>
+            <h3 class="panel-title">Запись на игру</h3>
+            <form action="" class="panel-form" id="form-registration" autocomplete="off">
+                <p class="panel-subtitle">Ваше имя</p>
+                <input name="name" type="text" class="panel-input" placeholder="Иван Иванов" required>
+
+                <p class="panel-subtitle">Почтовый адрес</p>
+                <input name="email" type="email" class="panel-input" placeholder="email@example.com" required>
+
+                <p class="panel-subtitle">Пакет услуг</p>
+                <select name="packet" class="panel-input panel-select" required>
+                    <option value="default" class="panel-option" selected disabled hidden>Выберите пакет услуг</option>
+                    <option value="knowing" class="panel-option">Знакомство</option>
+                    <option value="begginner" class="panel-option">Новичок</option>
+                    <option value="amateur" class="panel-option">Любитель</option>
+                    <option value="professional" class="panel-option">Профессионал</option>
+                </select>
+
+                <p class="panel-subtitle">Дата</p>
+                <input name="date" type="date" class="panel-input" required>
+
+                <p class="panel-subtitle">Комментарий</p>
+                <textarea name="comment" class="panel-input panel-textarea" placeholder="5 человек, на 3 часа с 14:00" maxlength="300"></textarea>
+
+                <input type="submit" value="Отправить" class="panel-submit" disabled>
+            </form>
         </div>
     </div>
 
@@ -252,5 +281,7 @@
     <script src="./scripts/header-fix.js"></script>
     <script src="./scripts/gallery.js"></script>
     <script src="./scripts/update-date.js"></script>
+    <script src="./scripts/modals/modals.js"></script>
+    <script src="./scripts/modals/modal-registration.js"></script>
 </body>
 </html>

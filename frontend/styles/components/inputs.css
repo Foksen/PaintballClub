@@ -1,0 +1,79 @@
+.panel-input {
+    padding: 1rem;
+    width: 100%;
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--surface-0);
+    outline: none;
+    background: none;
+    border: 1px solid var(--surface-400);
+    transition: border 0.2s;
+}
+
+.panel-input::placeholder {
+    font-weight: 400;
+    color: var(--surface-100);
+}
+
+.panel-input:hover {
+    border: 1px solid var(--surface-300);
+}
+
+.panel-input:focus {
+    border: 1px solid var(--orange);
+}
+
+.panel-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.panel-textarea {
+    height: 6rem;
+    resize: none;
+}
+
+.panel-textarea::-webkit-scrollbar {
+    width: 0.75rem;
+}
+
+.panel-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--surface-500);
+    cursor: pointer;
+}
+
+.panel-select {
+    cursor: pointer;
+}
+
+.panel-option {
+    background: var(--surface-700);
+}
+
+.panel-submit {
+    margin-top: 1rem;
+    padding: 1.25rem 0;
+    width: 100%;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--surface-0);
+    background-color: var(--orange);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.panel-submit:hover {
+    background-color: var(--orange-hover);
+}
+
+.panel-submit:active {
+    background-color: var(--orange-active);
+}
+
+.panel-submit:disabled {
+    background-color: transparent;
+    border: 1px solid var(--surface-400);
+    color: var(--surface-300);
+    cursor: default;
+}

@@ -2,6 +2,7 @@
 @import url(./components/colors.css);
 @import url(./components/typography.css);
 @import url(./components/buttons.css);
+@import url(./components/inputs.css);
 
 html {
     font-size: 16px;
