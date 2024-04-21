@@ -7,7 +7,7 @@
     z-index: 1;
     transition: background-color 0.2s;
     overflow: hidden;
-    z-index: 999;
+    z-index: 500;
     user-select: none;
 }
 
