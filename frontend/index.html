@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="section-button-container double-buttons-group">
-                    <button class="button-skew button-purple">Написать отзыв</button>
+                    <button class="button-skew button-purple btn-open-modal-feedback">Написать отзыв</button>
                     <button class="button-skew button-white">Все отзывы</button>
                 </div>
                 
@@ -277,11 +277,40 @@
         </div>
     </div>
 
+
+    <div class="modal" id="modal-feedback">
+        <div class="modal-panel">
+            <button class="panel-close-btn">
+                <svg class="panel-close-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                </svg>
+            </button>
+            <h3 class="panel-title">Написать отзыв</h3>
+            <form action="" class="panel-form" id="form-feedback" autocomplete="off">
+                <p class="panel-subtitle">Ваше имя</p>
+                <input name="name" type="text" class="panel-input" placeholder="Иван Иванов" required>
+
+                <p class="panel-subtitle">Почтовый адрес</p>
+                <input name="email" type="email" class="panel-input" placeholder="email@example.com" required>
+
+                <p class="panel-subtitle">Опыт игры</p>
+                <input name="name" type="text" class="panel-input" placeholder="2 года" required>
+
+                <p class="panel-subtitle">Отзыв</p>
+                <textarea name="review" class="panel-input panel-textarea" placeholder="Всё очень понравилось" maxlength="300" required></textarea>
+
+                <input type="submit" value="Отправить" class="panel-submit" disabled>
+            </form>
+        </div>
+    </div>
+
     <script src="./scripts/header-menu.js"></script>
     <script src="./scripts/header-fix.js"></script>
     <script src="./scripts/gallery.js"></script>
     <script src="./scripts/update-date.js"></script>
-    <script src="./scripts/modals/modals.js"></script>
-    <script src="./scripts/modals/modal-registration.js"></script>
+    <script src="./scripts/modals/modals-close.js"></script>
+    <script src="./scripts/modals/modals-validation.js"></script>
+    <script src="./scripts/modals/modals-registration.js"></script>
+    <script src="./scripts/modals/modals-feedback.js"></script>
 </body>
 </html>
