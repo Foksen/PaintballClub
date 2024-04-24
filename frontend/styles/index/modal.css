@@ -78,15 +78,46 @@
     color: var(--surface-0);
 }
 
-.panel-subtitle {
-    font-size: 1rem;
-}
-
 .panel-form {
     display: flex;
     flex-direction: column;
     width: 32rem;
     gap: 1.125rem;
+}
+
+.panel-subtitle {
+    font-size: 1rem;
+}
+
+.panel-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 26rem;
+}
+
+.panel-message-icon {
+    width: 6rem;
+    height: 6rem;
+    color: var(--surface-0);
+}
+
+.panel-message-subtitle {
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.125em;
+    color: var(--surface-0);
+}
+
+.panel-message-text {
+    margin-top: 1.125rem;
+    font-size: 1.125rem;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.375em;
+    color: var(--surface-50);
 }
 
 
@@ -98,6 +129,10 @@
     }
     
     .panel-form {
+        width: 100%;
+    }
+
+    .panel-message {
         width: 100%;
     }
 }

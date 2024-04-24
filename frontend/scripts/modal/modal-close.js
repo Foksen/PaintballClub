@@ -20,7 +20,7 @@ function initModalsClose() {
 
         let closeBtn = modal.querySelector('.panel-close-btn');
         closeBtn.addEventListener('click', () => {
-            modal.dispatchEvent(new Event('modal-close'));
+            modal.dispatchEvent(new CustomEvent('modal-close'));
         });
     });
 }

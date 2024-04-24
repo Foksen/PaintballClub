@@ -8,7 +8,7 @@ function initOpenRegistration() {
     let modalRegistration = document.getElementById('modal-registration');
     Array.from(btns).forEach((btn) => {
         btn.addEventListener('click', () => {
-            modalRegistration.dispatchEvent(new Event('modal-open'));
+            modalRegistration.dispatchEvent(new CustomEvent('modal-open'));
         });
     });
 }
@@ -36,7 +36,16 @@ function registrationSubmitFunction(event) {
     let data = new FormData(event.target);
     console.log(JSON.stringify(Object.fromEntries(data)));
 
-    event.target.dispatchEvent(new Event('modal-close', { bubbles: true }));
+    event.target.dispatchEvent(new CustomEvent('modal-close', { bubbles: true }));
+
+    event.target.dispatchEvent(new CustomEvent('modal-message-open', {
+        bubbles: true,
+        detail: {
+            type: 'question',
+            subtitle: 'Registration result',
+            text: 'No result'
+        }
+    })); 
 }
 
 

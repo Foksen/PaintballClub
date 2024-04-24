@@ -8,7 +8,7 @@ function initOpenFeedback() {
     let modalFeedback = document.getElementById('modal-feedback');
     Array.from(btns).forEach((btn) => {
         btn.addEventListener('click', () => {
-            modalFeedback.dispatchEvent(new Event('modal-open'));
+            modalFeedback.dispatchEvent(new CustomEvent('modal-open'));
         });
     });
 }
@@ -20,7 +20,16 @@ function feedbackSubmitFunction(event) {
     let data = new FormData(event.target);
     console.log(JSON.stringify(Object.fromEntries(data)));
     
-    event.target.dispatchEvent(new Event('modal-close', { bubbles: true }));
+    event.target.dispatchEvent(new CustomEvent('modal-close', { bubbles: true }));
+
+    event.target.dispatchEvent(new CustomEvent('modal-message-open', {
+        bubbles: true,
+        detail: {
+            type: 'question',
+            subtitle: 'Feedback result',
+            text: 'No result'
+        }
+    })); 
 }
 
 
