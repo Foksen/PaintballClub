@@ -250,14 +250,14 @@
                 </svg>
             </button>
             <h3 class="panel-title">Запись на игру</h3>
-            <form action="" class="panel-form" id="form-registration" autocomplete="off">
-                <p class="panel-subtitle">Ваше имя</p>
+            <form action="" class="panel-form panel-shrinking" id="form-registration" autocomplete="off">
+                <p class="panel-form-subtitle">Ваше имя</p>
                 <input name="name" type="text" class="panel-input" placeholder="Иван Иванов" required>
 
-                <p class="panel-subtitle">Почтовый адрес</p>
+                <p class="panel-form-subtitle">Ваша почта</p>
                 <input name="email" type="email" class="panel-input" placeholder="email@example.com" required>
 
-                <p class="panel-subtitle">Пакет услуг</p>
+                <p class="panel-form-subtitle">Пакет услуг</p>
                 <select name="packet" class="panel-input panel-select" required>
                     <option value="default" class="panel-option" selected disabled hidden>Выберите пакет услуг</option>
                     <option value="knowing" class="panel-option">Знакомство</option>
@@ -266,10 +266,10 @@
                     <option value="professional" class="panel-option">Профессионал</option>
                 </select>
 
-                <p class="panel-subtitle">Дата</p>
+                <p class="panel-form-subtitle">Дата</p>
                 <input name="date" type="date" class="panel-input" required>
 
-                <p class="panel-subtitle">Комментарий</p>
+                <p class="panel-form-subtitle">Комментарий</p>
                 <textarea name="comment" class="panel-input panel-textarea" placeholder="5 человек, на 3 часа с 14:00" maxlength="300"></textarea>
 
                 <input type="submit" value="Отправить" class="panel-submit" disabled>
@@ -286,17 +286,17 @@
                 </svg>
             </button>
             <h3 class="panel-title">Написать отзыв</h3>
-            <form action="" class="panel-form" id="form-feedback" autocomplete="off">
-                <p class="panel-subtitle">Ваше имя</p>
+            <form action="" class="panel-form panel-shrinking" id="form-feedback" autocomplete="off">
+                <p class="panel-form-subtitle">Ваше имя</p>
                 <input name="name" type="text" class="panel-input" placeholder="Иван Иванов" required>
 
-                <p class="panel-subtitle">Почтовый адрес</p>
+                <p class="panel-form-subtitle">Почтовый адрес</p>
                 <input name="email" type="email" class="panel-input" placeholder="email@example.com" required>
 
-                <p class="panel-subtitle">Опыт игры</p>
+                <p class="panel-form-subtitle">Опыт игры</p>
                 <input name="name" type="text" class="panel-input" placeholder="2 года" required>
 
-                <p class="panel-subtitle">Отзыв</p>
+                <p class="panel-form-subtitle">Отзыв</p>
                 <textarea name="review" class="panel-input panel-textarea" placeholder="Всё очень понравилось" maxlength="300" required></textarea>
 
                 <input type="submit" value="Отправить" class="panel-submit" disabled>
