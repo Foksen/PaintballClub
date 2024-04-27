@@ -55,16 +55,13 @@
     transition: scale 0.4s, filter 0.2s;
 }
 
-.gallery-preview-label:hover .gallery-preview-photo {
-    scale: 1.1;
-}
-
-.gallery-previews-container:has(.gallery-preview-label:hover) .gallery-preview-label .gallery-preview-photo {
+.gallery-previews-container:hover .gallery-preview-photo {
     filter: brightness(0.7);
 }
 
 .gallery-preview-label:hover .gallery-preview-photo {
-    filter: brightness(1) !important;
+    scale: 1.1;
+    filter: brightness(1);
 }
 
 
