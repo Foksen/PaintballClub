@@ -37,7 +37,7 @@
                 <p class="main-text">Приглашает вас на пробную тренировку в собственном оборудованном комплексе. Снаряжение выдаётся участникам бесплатно. Подробные условия акции смотрите в пакетах услуг</p>
                 <div class="double-buttons-group">
                     <button class="button-skew button-orange btn-open-modal-registration">Записаться</button>
-                    <button class="button-skew button-white">Отзывы</button>
+                    <button class="button-skew button-white btn-open-modal-reviews">Отзывы</button>
                 </div>
             </div>
         </section>
@@ -106,44 +106,20 @@
             <div class="wrapper">
                 <h2 class="section-title">Отзывы</h2>
 
-                <div class="reviews-container">
+                <div class="reviews-container" id="reviews-container">
+                    <!--Example
                     <div class="reviews-card">
                         <div class="reviews-card-head">
-                            <div class="reviews-card-name">Игорь Жолобов</div>
-                            <div class="reviews-card-exp">1 год</div>
+                            <div class="reviews-card-name">Name</div>
+                            <div class="reviews-card-exp">Experience</div>
                         </div>
-                        <div class="reviews-card-text">
-                            Очень понравился ваш клуб. Снаряжение выдали новое, площадка хорошо подходит для пейтбольных боёв. Обязательно приду ещё!
-                        </div>
-                        <button class="reviews-card-btn">Читать полностью</button>
-                    </div>
-
-                    <div class="reviews-card">
-                        <div class="reviews-card-head">
-                            <div class="reviews-card-name">Василий Пупки</div>
-                            <div class="reviews-card-exp">3 года</div>
-                        </div>
-                        <div class="reviews-card-text">
-                            Хороший клуб, близко к моему дому. Каждый месец собираюсь c друзьями и играю здесь. Администратор помогает в случае возникновения каких-либо проблем. Поле хорошее, чистое. Оружие качественное, подобные аналоги в магазинах стоят довольно дорого.
-                        </div>
-                        <button class="reviews-card-btn">Читать полностью</button>
-                    </div>
-
-                    <div class="reviews-card">
-                        <div class="reviews-card-head">
-                            <div class="reviews-card-name">Иван Иваныч</div>
-                            <div class="reviews-card-exp">5 лет</div>
-                        </div>
-                        <div class="reviews-card-text">
-                            Лучшего клуба в Москве не найти! Цены демократичные - в других клубах берут намного больше. У клуба очень хорошее название, а главное - оригинальное. Отдельное спасибо автору, придумавшему его. Пойду ещё поиграю.
-                        </div>
-                        <button class="reviews-card-btn">Читать полностью</button>
-                    </div>
+                        <div class="reviews-card-text">Text</div>
+                        <button class="reviews-card-btn btn-open-modal-reviews">Читать полностью</button>
+                    </div>-->
                 </div>
-
                 <div class="section-button-container double-buttons-group">
                     <button class="button-skew button-purple btn-open-modal-feedback">Написать отзыв</button>
-                    <button class="button-skew button-white">Все отзывы</button>
+                    <button class="button-skew button-white btn-open-modal-reviews">Все отзывы</button>
                 </div>
                 
             </div>
@@ -304,6 +280,28 @@
         </div>
     </div>
 
+    <div class="modal" id="modal-reviews">
+        <div class="modal-panel">
+            <button class="panel-close-btn">
+                <svg class="panel-close-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                </svg>
+            </button>
+            <h3 class="panel-title">Отзывы о нас</h3>
+            <div class="panel-reviews panel-shrinking" id="panel-reviews">
+                <!-- Example
+                <div class="panel-reviews-card">
+                    <div class="panel-reviews-card-head">
+                        <div class="panel-reviews-card-name">Name</div>
+                        <div class="panel-reviews-card-experience">Experience</div>
+                    </div>
+                    <div class="panel-reviews-card-text">Text</div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="modal-message">
         <div class="modal-panel">
             <button class="panel-close-btn">
@@ -328,5 +326,6 @@
     <script src="./scripts/modal/modal-validation.js"></script>
     <script src="./scripts/modal/modal-registration.js"></script>
     <script src="./scripts/modal/modal-feedback.js"></script>
+    <script src="./scripts/modal/modal-reviews.js"></script>
 </body>
 </html>

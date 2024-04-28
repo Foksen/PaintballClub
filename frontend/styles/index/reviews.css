@@ -1,14 +1,15 @@
 .reviews-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     gap: 2rem;
 }
 
 .reviews-card {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 33%;
     padding: 1.75rem 1.5rem;
     height: 17.5rem;
     background-color: var(--surface-600);
@@ -84,7 +85,7 @@
 
 @media (max-width: 960px) {
     .reviews-container {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 
     .reviews-card {
