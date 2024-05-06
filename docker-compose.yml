@@ -8,3 +8,29 @@ services:
       - ./html:/usr/share/nginx/html:ro
     ports:
       - 80:80
+
+  database:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - pcmirea_db:/var/lib/postgresql/data
+    restart:
+      always
+
+  # Dev Only
+  adminer:
+    image: adminer:4.8.1
+    environment:
+      ADMINER_DEFAULT_DB_DRIVER: pgsql
+      ADMINER_DEFAULT_DB_HOST: database
+      ADMINER_DEFAULT_DB_NAME: ${POSTGRES_DB}
+    ports:
+      - 9090:8080
+
+volumes:
+  pcmirea_db:
