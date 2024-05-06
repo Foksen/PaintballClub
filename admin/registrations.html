@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/admin.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicons/FaviconAdmin.ico">
+    <title>Пейнтбольный клуб МИРЭА - Админ-панель</title>
+</head>
+<body>
+    <header class="header">
+        <div class="wrapper">
+            <div class="header-container">
+                <a href="./" class="header-logo-link">
+                    <span class="header-logo">PCMIREA</span>
+                    <span>|</span>
+                    <span>Админ-панель</span>
+                </a>
+                <div class="header-account-container">
+                    <span class="header-account-name">Admin123</span>
+                    <button class="header-account-logout-btn" id="header-account-logout-btn" title="Выйти">
+                        <svg class="header-account-logout-icon" version="1.1" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.1,12.6 L8.5,14 L13.5,9 L8.5,4 L7.1,5.4 L9.7,8 L0,8 L0,10 L9.7,10 L7.1,12.6 L7.1,12.6 Z M16,0 L2,0 C0.9,0 0,0.9 0,2 L0,6 L2,6 L2,2 L16,2 L16,16 L2,16 L2,12 L0,12 L0,16 C0,17.1 0.9,18 2,18 L16,18 C17.1,18 18,17.1 18,16 L18,2 C18,0.9 17.1,0 16,0 L16,0 Z" id="Shape"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="section-container section-request">
+            <div class="wrapper">
+                <h2 class="section-title request-title">Заявки на игру</h2>
+
+                <div class="requests-container" id="registrations-container">
+                    <!-- EXAMPLE
+                    <details open class="request-details request-consideration registration-card">
+                        <summary class="request-summary">
+                            <svg class="request-summary-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                <polygon points="396.6,160 416,180.7 256,352 96,180.7 115.3,160 256,310.5 "/>
+                            </svg>
+                            <span class="request-summary-text" val="123">Заявка #</span>
+                        </summary>
+                        
+                        <div class="request-content">
+                            <div class="request-content-desc registration-name" val="Игорь Жолобов">Имя:</div>
+                            <div class="request-content-desc registration-email" val="izholobov2004@gmail.com">Почта:</div>
+                            <div class="request-content-desc registration-packet" val="Знакомство">Пакет:</div>
+                            <div class="request-content-desc registration-date" val="06.05.2004">Дата:</div>
+                            <div class="request-content-desc registration-comment" val="3 человека, на 3 часа с 14:00">Комментарий:</div>
+                        </div>
+
+                        <div class="request-btns">
+                            <button class="request-btn request-btn-accept registration-accept-btn">Одобрить</button>
+                            <button class="request-btn request-btn-reject registration-reject-btn">Отклонить</button>
+                        </div>
+                    </details>
+                -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-text">Made by <a href="https://t.me/savage_foksen" class="footer-link" target="_blank">Foksen</a> @ <span class="current-year"></span></p>
+    </footer>
+
+    <script src="./scripts/update-date.js"></script>
+    <script src="./scripts/registrations.js"></script>
+</body>
+</html>

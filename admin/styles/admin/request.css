@@ -1,0 +1,146 @@
+.request-title {
+    margin-bottom: 2rem;
+}
+
+.requests-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.request-details {
+    padding: 1.5rem;
+    background-color: var(--surface-800);
+}
+
+.request-summary {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    user-select: none;
+    cursor: pointer;
+    list-style: none;
+}
+
+.request-summary-icon {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--surface-0);
+    transform: rotate(180deg);
+    transition: transform 0.2s, fill 0.2s;
+}
+
+.request-summary:hover .request-summary-icon {
+    fill: var(--surface-30);
+}
+
+.request-summary:active .request-summary-icon {
+    fill: var(--surface-50);
+}
+
+.request-details[open] .request-summary-icon {
+    transform: rotate(0deg);
+}
+
+.request-summary-text {
+    margin-left: 1rem;
+    flex-grow: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--surface-0);
+    transition: color 0.2s;
+}
+
+.request-accepted .request-summary-text {
+    color: var(--green);
+}
+
+.request-consideration .request-summary-text {
+    color: var(--blue);
+}
+
+.request-rejected .request-summary-text {
+    color: var(--red);
+}
+
+.request-summary-text::after {
+    content: attr(val);
+}
+
+.request-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.request-content-desc {
+    font-size: 1.125rem;
+    line-height: 1.5em;
+    color: var(--surface-30);
+}
+
+.request-content-desc::after {
+    content: attr(val);
+    margin-left: 0.75rem;
+    font-weight: 500;
+    color: var(--surface-0);
+}
+
+.request-btns {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2.5rem;
+    row-gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.request-btn {
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--surface-0);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.request-btn-accept {
+    color: var(--green);
+}
+
+.request-btn-accept:hover {
+    color: var(--green-hover);
+}
+
+.request-btn-accept:active {
+    color: var(--green-active);
+}
+
+.request-btn-consider {
+    color: var(--blue);
+}
+
+.request-btn-consider:hover {
+    color: var(--blue-hover);
+}
+
+.request-btn-consider:active {
+    color: var(--blue-active);
+}
+
+.request-btn-reject {
+    color: var(--red);
+}
+
+.request-btn-reject:hover {
+    color: var(--red-hover);
+}
+
+.request-btn-reject:active {
+    color: var(--red-active);
+}

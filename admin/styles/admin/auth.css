@@ -1,0 +1,43 @@
+.main-auth {
+    position: relative;
+    margin-top: 0;
+}
+
+.section-auth {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 32rem;
+}
+
+.auth-panel {
+    padding: 3rem;
+    border: 1px solid var(--surface-600);
+}
+
+.auth-title {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+
+@media (max-width: 560px) {
+    .section-auth {
+        width: calc(100% - 4rem);
+        min-width: auto;
+    }
+}
+
+@media (max-width: 425px) {
+    .auth-title {
+        font-size: 2rem;
+    }
+}

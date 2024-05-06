@@ -1,0 +1,92 @@
+* {
+    --orange-light: #fdf5e7;
+    --orange-light-hover: #fcf0dc;
+    --orange-light-active: #f9e0b6;
+    --orange: #ec9c13;
+    --orange-hover: #d48c11;
+    --orange-active: #bd7d0f;
+    --orange-dark: #b1750e;
+    --orange-dark-hover: #8e5e0b;
+    --orange-dark-active: #6a4609;
+    --orange-darker: #533707;
+
+    --violet-light: #f3e7fb;
+    --violet-light-hover: #eddbf9;
+    --violet-light-active: #d9b5f2;
+    --violet: #8611d4;
+    --violet-hover: #790fbf;
+    --violet-active: #6b0eaa;
+    --violet-dark: #650d9f;
+    --violet-dark-hover: #500a7f;
+    --violet-dark-active: #3c085f;
+    --violet-darker: #2f064a;
+
+    --surface-0: #ffffff;
+    --surface-10: #fafafa;
+    --surface-20: #f5f5f5;
+    --surface-30: #ebebeb;
+    --surface-40: #dededf;
+    --surface-50: #c0c0c2;
+    --surface-60: #b1b1b3;
+    --surface-70: #a4a4a6;
+    --surface-80: #959598;
+    --surface-90: #868689;
+    --surface-100: #77767a;
+    --surface-200: #68676b;
+    --surface-300: #59585d;
+    --surface-400: #4c4b50;
+    --surface-500: #3d3c42;
+    --surface-600: #303035;
+    --surface-700: #1f1e24;
+    --surface-800: #100f15;
+    --surface-900: #030209;
+    --surface-1000: #000000;
+
+    --blue-light: #e7f8fd;
+    --blue-light-hover: #dcf4fc;
+    --blue-light-active: #b6e8f9;
+    --blue: #13b6ec;
+    --blue-hover: #11a4d4;
+    --blue-active: #0f92bd;
+    --blue-dark: #0e89b1;
+    --blue-dark-hover: #0b6d8e;
+    --blue-dark-active: #09526a;
+    --blue-darker: #074053;
+
+    --green-light: #e7fdef;
+    --green-light-hover: #dcfce7;
+    --green-light-active: #b6f9cd;
+    --green: #13ec5f;
+    --green-hover: #11d456;
+    --green-active: #0fbd4c;
+    --green-dark: #0eb147;
+    --green-dark-hover: #0b8e39;
+    --green-dark-active: #096a2b;
+    --green-darker: #075321;
+
+    --red-light: #fde7e7;
+    --red-light-hover: #fcdcdc;
+    --red-light-active: #f9b6b6;
+    --red: #ec1313;
+    --red-hover: #d41111;
+    --red-active: #bd0f0f;
+    --red-dark: #b10e0e;
+    --red-dark-hover: #8e0b0b;
+    --red-dark-active: #6a0909;
+    --red-darker: #530707;
+
+    --yellow-light: #fdfae7;
+    --yellow-light-hover: #fcf7dc;
+    --yellow-light-active: #f9eeb6;
+    --yellow: #ecc813;
+    --yellow-hover: #d4b411;
+    --yellow-active: #bda00f;
+    --yellow-dark: #b1960e;
+    --yellow-dark-hover: #8e780b;
+    --yellow-dark-active: #6a5a09;
+    --yellow-darker: #534607;
+
+    --vk: #0077FF;
+    --telegram: #0088cc;
+    --whatsapp: #25D366;
+}
