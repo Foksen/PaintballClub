@@ -17,6 +17,6 @@ public class ReviewState {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reviewStatesId")
     private int id;
 
-    @Column(name = "state", unique = true)
-    private String state;
+    @Column(name = "name", unique = true)
+    private String name;
 }

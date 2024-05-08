@@ -17,6 +17,6 @@ public class RegistrationState {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "registrationStatesId")
     private int id;
 
-    @Column(name = "state", unique = true)
-    private String state;
+    @Column(name = "name", unique = true)
+    private String name;
 }
