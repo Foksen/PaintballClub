@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ReviewsRepository extends JpaRepository<Review, Integer> {
-    public List<Review> findAllByOrderByIdAsc();
+    List<Review> findAllByOrderByIdAsc();
 }

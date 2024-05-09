@@ -9,5 +9,6 @@ public interface ReviewsService {
     List<Review> readAll();
     Review read(int id);
     boolean update(Review review, int id);
+    boolean updateNonNull(Review review, int id);
     boolean delete(int id);
 }

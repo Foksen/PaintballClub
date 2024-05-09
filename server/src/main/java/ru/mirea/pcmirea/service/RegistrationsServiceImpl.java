@@ -16,7 +16,6 @@ public class RegistrationsServiceImpl implements RegistrationsService {
         this.registrationsRepository = registrationsRepository;
     }
 
-
     @Override
     public void create(Registration registration) {
         registrationsRepository.save(registration);
@@ -24,7 +23,7 @@ public class RegistrationsServiceImpl implements RegistrationsService {
 
     @Override
     public List<Registration> readAll() {
-        return registrationsRepository.findAll();
+        return registrationsRepository.findAllByOrderByIdAsc();
     }
 
     @Override
@@ -37,6 +36,28 @@ public class RegistrationsServiceImpl implements RegistrationsService {
         if (registrationsRepository.existsById(id)) {
             registration.setId(id);
             registrationsRepository.save(registration);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateNonNull(Registration registration, int id) {
+        if (registrationsRepository.existsById(id)) {
+            Registration newRegistration = registrationsRepository.getReferenceById(id);
+            if (registration.getName() != null)
+                newRegistration.setName(registration.getName());
+            if (registration.getEmail() != null)
+                newRegistration.setEmail(registration.getEmail());
+            if (registration.getDate() != null)
+                newRegistration.setDate(registration.getDate());
+            if (registration.getComment() != null)
+                newRegistration.setComment(registration.getComment());
+            if (registration.getPacket() != null)
+                newRegistration.setPacket(registration.getPacket());
+            if (registration.getState() != null)
+                newRegistration.setState(registration.getState());
+            registrationsRepository.save(newRegistration);
             return true;
         }
         return false;

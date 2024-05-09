@@ -9,5 +9,6 @@ public interface RegistrationsService {
     List<Registration> readAll();
     Registration read(int id);
     boolean update(Registration registration, int id);
+    boolean updateNonNull(Registration registration, int id);
     boolean delete(int id);
 }

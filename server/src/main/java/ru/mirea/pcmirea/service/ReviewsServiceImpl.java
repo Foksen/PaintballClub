@@ -23,7 +23,7 @@ public class ReviewsServiceImpl implements ReviewsService {
 
     @Override
     public List<Review> readAll() {
-        return reviewsRepository.findAll();
+        return reviewsRepository.findAllByOrderByIdAsc();
     }
 
     @Override
@@ -36,6 +36,26 @@ public class ReviewsServiceImpl implements ReviewsService {
         if (reviewsRepository.existsById(id)) {
             review.setId(id);
             reviewsRepository.save(review);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateNonNull(Review review, int id) {
+        if (reviewsRepository.existsById(id)) {
+            Review newReview = reviewsRepository.getReferenceById(id);
+            if (review.getName() != null)
+                newReview.setName(review.getName());
+            if (review.getEmail() != null)
+                newReview.setEmail(review.getEmail());
+            if (review.getExperience() != null)
+                newReview.setExperience(review.getExperience());
+            if (review.getDate() != null)
+                newReview.setDate(review.getDate());
+            if (review.getState() != null)
+                newReview.setState(review.getState());
+            reviewsRepository.save(newReview);
             return true;
         }
         return false;

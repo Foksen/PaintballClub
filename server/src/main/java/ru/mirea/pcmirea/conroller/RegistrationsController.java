@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.mirea.pcmirea.exception.RegistrationNotFoundException;
 import ru.mirea.pcmirea.model.Registration;
 import ru.mirea.pcmirea.service.RegistrationsServiceImpl;
 
@@ -42,6 +43,26 @@ public class RegistrationsController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("Registration created");
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/")
+    public ResponseEntity<?> updateRegistration(Integer id, Registration registration) {
+        try {
+            if (registrationsService.updateNonNull(registration, id)) {
+                return ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body("Registration updated");
+            }
+            throw new RegistrationNotFoundException(Integer.toString(id));
+        } catch (RegistrationNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(String.format("Registration with id [%s] cannot be updated, because it was not found", e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)

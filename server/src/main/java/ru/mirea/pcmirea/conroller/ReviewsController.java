@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.mirea.pcmirea.exception.ReviewNotFoundException;
 import ru.mirea.pcmirea.model.Review;
 import ru.mirea.pcmirea.service.ReviewsServiceImpl;
 
@@ -47,6 +48,26 @@ public class ReviewsController {
         }
     }
 
+    @PatchMapping("/")
+    public ResponseEntity<?> updateReview(Integer id, Review review) {
+        try {
+            if (reviewsService.updateNonNull(review, id)) {
+                return ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body("Review updated");
+            }
+            throw new ReviewNotFoundException(Integer.toString(id));
+        } catch (ReviewNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(String.format("Review with id [%s] cannot be updated, because it was not found", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/")
     public ResponseEntity<?> deleteRegistration(Integer id) {
         try {
@@ -55,11 +76,11 @@ public class ReviewsController {
                         .status(HttpStatus.OK)
                         .body("Review deleted");
             }
-            else {
-                return ResponseEntity
-                        .status(HttpStatus.OK)
-                        .body(String.format("Review with id [%d] not found", id));
-            }
+            throw new ReviewNotFoundException(id.toString());
+        } catch (ReviewNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(String.format("Review with id [%s] cannot be deleted, because it was not found", e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
