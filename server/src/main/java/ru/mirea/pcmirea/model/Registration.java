@@ -1,11 +1,13 @@
 package ru.mirea.pcmirea.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "registrations")
@@ -26,6 +28,7 @@ public class Registration {
     private String email;
 
     @Column(name = "date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
     private Timestamp date;
 
     @Column(name = "comment")
