@@ -1,11 +1,6 @@
 
 /* SCRIPT TO OPEN A MODAL MESSAGE WHEN ON EVENT OCCURS ON ANY ELEMENT */
 
-const ICON_SUCCESS = "./assets/icons/Success.svg";
-const ICON_ERROR = "./assets/icons/Error.svg";
-const ICON_INFO = "./assets/icons/Info.svg";
-const ICON_QUESTION = "./assets/icons/Question.svg";
-
 
 /* Create notification
 
@@ -28,22 +23,23 @@ function listenerMessage(event) {
     let text = event.detail.text;
 
     let modal = document.getElementById('modal-message');
-    let modalImg = modal.querySelector('.panel-message-icon');
+    let modalImgContainer = modal.querySelector('.panel-message-icon');
     let modalSubtitle = modal.querySelector('.panel-message-subtitle');
     let modalText = modal.querySelector('.panel-message-text');
 
+    modalImgContainer.className = 'panel-message-icon ';
     switch (type) {
         case 'success':
-            modalImg.src = ICON_SUCCESS;
+            modalImgContainer.className += 'panel-message-icon-success'
             break;
         case 'error':
-            modalImg.src = ICON_ERROR;
+            modalImgContainer.className += 'panel-message-icon-error'
             break;
         case 'info':
-            modalImg.src = ICON_INFO;
+            modalImgContainer.className += 'panel-message-icon-info'
             break;
         case 'question':
-            modalImg.src = ICON_QUESTION;
+            modalImgContainer.className += 'panel-message-icon-question'
             break;
     }
     modalSubtitle.innerHTML = subtitle;

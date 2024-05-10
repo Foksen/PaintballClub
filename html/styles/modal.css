@@ -162,7 +162,23 @@
 .panel-message-icon {
     width: 6rem;
     height: 6rem;
-    color: var(--surface-0);
+    background-size: cover;
+}
+
+.panel-message-icon-success {
+    background-image: url("../assets/icons/Success.svg");
+}
+
+.panel-message-icon-error {
+    background-image: url("../assets/icons/Error.svg");
+}
+
+.panel-message-icon-info {
+    background-image: url("../assets/icons/Info.svg");
+}
+
+.panel-message-icon-question {
+    background-image: url("../assets/icons/Question.svg");
 }
 
 .panel-message-subtitle {
