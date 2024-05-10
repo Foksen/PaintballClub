@@ -53,15 +53,15 @@
     transition: color 0.2s;
 }
 
-.request-accepted .request-summary-text {
+.request-accept .request-summary-text {
     color: var(--green);
 }
 
-.request-consideration .request-summary-text {
+.request-consider .request-summary-text {
     color: var(--blue);
 }
 
-.request-rejected .request-summary-text {
+.request-reject .request-summary-text {
     color: var(--red);
 }
 

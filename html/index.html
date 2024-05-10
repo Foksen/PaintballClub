@@ -228,7 +228,7 @@
                 <select name="packet" class="panel-input panel-select" required>
                     <option value="default" class="panel-option" selected disabled hidden>Выберите пакет услуг</option>
                     <option value="knowing" class="panel-option">Знакомство</option>
-                    <option value="begginner" class="panel-option">Новичок</option>
+                    <option value="beginner" class="panel-option">Новичок</option>
                     <option value="amateur" class="panel-option">Любитель</option>
                     <option value="professional" class="panel-option">Профессионал</option>
                 </select>
@@ -261,10 +261,10 @@
                 <input name="email" type="email" class="panel-input" placeholder="email@example.com" required>
 
                 <p class="panel-form-subtitle">Опыт игры</p>
-                <input name="name" type="text" class="panel-input" placeholder="2 года" required>
+                <input name="experience" type="text" class="panel-input" placeholder="2 года" required>
 
                 <p class="panel-form-subtitle">Отзыв</p>
-                <textarea name="review" class="panel-input panel-textarea" placeholder="Всё очень понравилось" maxlength="300" required></textarea>
+                <textarea name="text" class="panel-input panel-textarea" placeholder="Всё очень понравилось" maxlength="300" required></textarea>
 
                 <input type="submit" value="Отправить" class="panel-submit" disabled>
             </form>
@@ -299,6 +299,7 @@
         </div>
     </div>
 
+    <script src="./scripts/webconfig.js"></script>
     <script src="./scripts/update-date.js"></script>
     <script src="./scripts/index/header-menu.js"></script>
     <script src="./scripts/index/header-fix.js"></script>

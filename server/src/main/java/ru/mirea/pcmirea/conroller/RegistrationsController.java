@@ -1,5 +1,11 @@
 package ru.mirea.pcmirea.conroller;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,21 +16,31 @@ import ru.mirea.pcmirea.service.RegistrationsServiceImpl;
 
 @RestController()
 @RequestMapping("/registrations")
+@CrossOrigin
 public class RegistrationsController {
     @Autowired
     private RegistrationsServiceImpl registrationsService;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @GetMapping("/")
     public ResponseEntity<?> getRegistrations(@RequestParam(required = false) Integer id) {
         try {
             if (id == null) {
+                CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+                CriteriaQuery<Registration> registrationCriteriaQuery = builder.createQuery(Registration.class);
+                Root<Registration> root = registrationCriteriaQuery.from(Registration.class);
+                registrationCriteriaQuery
+                        .select(root)
+                        .orderBy(builder.asc(root.get("id")));
+                Query<Registration> query = (Query<Registration>) entityManager.createQuery(registrationCriteriaQuery);
                 return ResponseEntity
                         .status(HttpStatus.OK)
-                        .body(registrationsService.readAll());
+                        .body(query.getResultList());
             }
             else {
                 Registration registration = registrationsService.read(1);
-                System.out.printf(registration.getName());
                 return ResponseEntity
                         .status(HttpStatus.OK)
                         .body(registrationsService.read(id));
@@ -37,7 +53,7 @@ public class RegistrationsController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<?> createRegistration(Registration registration) {
+    public ResponseEntity<?> createRegistration(@RequestBody Registration registration) {
         try {
             registrationsService.create(registration);
             return ResponseEntity
@@ -51,14 +67,14 @@ public class RegistrationsController {
     }
 
     @PatchMapping("/")
-    public ResponseEntity<?> updateRegistration(Integer id, Registration registration) {
+    public ResponseEntity<?> updateRegistration(@RequestBody Registration registration) {
         try {
-            if (registrationsService.updateNonNull(registration, id)) {
+            if (registrationsService.updateNonNull(registration, registration.getId())) {
                 return ResponseEntity
                         .status(HttpStatus.OK)
                         .body("Registration updated");
             }
-            throw new RegistrationNotFoundException(Integer.toString(id));
+            throw new RegistrationNotFoundException(Integer.toString(registration.getId()));
         } catch (RegistrationNotFoundException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -71,7 +87,7 @@ public class RegistrationsController {
     }
 
     @DeleteMapping("/")
-    public ResponseEntity<?> deleteRegistration(Integer id) {
+    public ResponseEntity<?> deleteRegistration(@RequestBody Integer id) {
         try {
             if (registrationsService.delete(id)) {
                 return ResponseEntity

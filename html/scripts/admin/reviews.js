@@ -3,32 +3,72 @@
 
 
 // possible review states
-const ReviewState = { ACCEPTED: 'accepted', CONSIDERATION: 'consideration', REJECTED: 'rejected' };
-
-
-// class of a review
-class Review {
-    constructor(id, name='Unknown', email='Unknown', experience='0', text='Something is rotten in the state of Denmark', state=ReviewState.CONSIDERATION) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.experience = experience;
-        this.text = text;
-        this.state = state;
-    }
-}
+const ReviewStates = { 1: 'accept', 2: 'consider', 3: 'reject' };
 
 
 // request to the server to accept the review
-function requestAcceptReview(eventId) {
-    // Request for server to accept event
-    console.log(`Accept review #${eventId}`);
+async function requestAcceptReview(eventId) {
+    let reviewDetails = { 
+        id: eventId,
+        state: {
+            id: 1
+        }
+    };
+    let response = await requestToApi('reviews/', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(reviewDetails)
+    });
+    if (!response.ok) {
+        let msg = await response.text();
+        console.log(msg);
+        document.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'error',
+                subtitle: 'Не удалось изменить отзыв',
+                text: 'Ошибка при изменении отзыва. Информация об ошибке выведена в консоль'
+            }
+        })); 
+        return false;
+    }
+    return true;
 }
 
 
 // request to the server to reject the review
-function requestRejectReview(eventId) {
-    console.log(`Reject review #${eventId}`);
+async function requestRejectReview(eventId) {
+    let reviewDetails = { 
+        id: eventId,
+        state: {
+            id: 3
+        }
+    };
+    let response = await requestToApi('reviews/', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(reviewDetails)
+    });
+    if (!response.ok) {
+        let msg = await response.text();
+        console.log(msg);
+        document.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'error',
+                subtitle: 'Не удалось изменить отзыв',
+                text: 'Ошибка при изменении отзыва. Информация об ошибке выведена в консоль'
+            }
+        })); 
+        return false;
+    }
+    return true;
 }
 
 
@@ -37,7 +77,7 @@ function createReviewCard(review) {
     let reviewsContainer = document.getElementById('reviews-container');
 
     let details = document.createElement('details');
-    details.className = `request-details review-card request-${review.state}`;
+    details.className = `request-details review-card request-${ReviewStates[review.state.id ?? 0]}`;
     reviewsContainer.append(details);
 
     let summary = document.createElement('summary');
@@ -96,7 +136,9 @@ function createReviewCard(review) {
     btnAccept.innerHTML = 'Одобрить';
     btnsContainer.append(btnAccept);
     btnAccept.addEventListener('click', () => {
-        requestAcceptReview(review.id);
+        if (requestAcceptReview(review.id)) {
+            details.className = `request-details review-card request-accept`;
+        }
     });
 
     let btnReject = document.createElement('button');
@@ -104,7 +146,9 @@ function createReviewCard(review) {
     btnReject.innerHTML = 'Отклонить';
     btnsContainer.append(btnReject);
     btnReject.addEventListener('click', () => {
-        requestRejectReview(review.id);
+        if (requestRejectReview(review.id)) {
+            details.className = `request-details review-card request-reject`;
+        }
     });
 
     return details;
@@ -112,20 +156,51 @@ function createReviewCard(review) {
 
 
 // load reviews from server
-function loadReviews() {
-    // here will be a script accessing the server
-
-    let reviews = [
-        new Review(0, 'Игорь Жолобов', 'izholobov2004@gmail.com', '1 год', 'Супер-пупер!', ReviewState.CONSIDERATION),
-        new Review(1, 'Антон Смирнов', 'communist738@gmail.com', '3 месяца', 'Гуд', ReviewState.ACCEPTED),
-        new Review(2, 'Сергей Воронков', 'svoronkov1241@gmail.com', '6 лет', 'Збс', ReviewState.REJECTED),
-    ];
-    return reviews;
+async function loadReviews() {
+    let response = await requestToApi('reviews/');
+    if (!response.ok) {
+        let msg = await response.text();
+        console.log(msg);
+        document.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'error',
+                subtitle: 'Не удалось загрузить отзывы',
+                text: 'Ошибка при загрузке отзывов. Информация об ошибке выведена в консоль'
+            }
+        })); 
+        return;
+    }
+    return response.json();
 }
 
 
+// init review cards
+async function initReviews() {
+    let reviews = await loadReviews();
+    if (reviews) {
+        try {
+            Array.from(reviews).forEach((review) => {
+                try {
+                    createReviewCard(review);
+                } catch (err) {
+                    console.log(err);
+                    console.log(review);
+                }
+            });
+        } catch (err) {
+            console.log(err);
+            document.dispatchEvent(new CustomEvent('modal-message-open', {
+                bubbles: true,
+                detail: {
+                    type: 'error',
+                    subtitle: 'Не удалось отобразить отзывы',
+                    text: 'Отзывы загружены, но не удалось создать карточки. Информация об ошибке выведена в консоль'
+                }
+            })); 
+        }
+    }
+}
 
-let reviews = loadReviews();
-reviews.forEach((review) => {
-    createReviewCard(review);
-});
+
+initReviews();

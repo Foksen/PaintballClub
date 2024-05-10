@@ -23,7 +23,7 @@ public class ReviewsServiceImpl implements ReviewsService {
 
     @Override
     public List<Review> readAll() {
-        return reviewsRepository.findAllByOrderByIdAsc();
+        return reviewsRepository.findAll();
     }
 
     @Override

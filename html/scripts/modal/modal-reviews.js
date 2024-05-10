@@ -2,13 +2,26 @@
 /* SCRIPT OF SPECIFIC BEHAVIOR FOR A MODAL REVIEWS */
 
 
-// class of a review
-class Review {
-    constructor(name='Unknown', experience=0, text='Something is rotten in the state of Denmark') {
-        this.name = name;
-        this.experience = experience;
-        this.text = text;
+// util function. get N non-repeating array indexes (or less if the array is shorter)
+function getRandomIndexes(N, arrlength) {
+    let selectedReviewsIndexes = [];
+    while (selectedReviewsIndexes.length < N && selectedReviewsIndexes.length < arrlength) {
+        let i = Math.floor(Math.random() * arrlength);
+        if (selectedReviewsIndexes.indexOf(i) != -1)
+            continue;
+        selectedReviewsIndexes.push(i);
     }
+    return selectedReviewsIndexes;
+}
+
+
+// util function. get elements of array by indexes
+function getElementsByIndexes(array, indexes) {
+    let result = [];
+    indexes.forEach((index) => {
+        result.push(array[index]);
+    });
+    return result;
 }
 
 
@@ -89,39 +102,22 @@ function createReviewCard(review) {
 
 
 // load reviews from server
-function loadReviews() {
-    // loading reviews    
-    let reviews = [
-        new Review('Игорь Жолобов', '1 год', 'Очень понравился ваш клуб. Снаряжение выдали новое, площадка хорошо подходит для пейтбольных боёв. Обязательно приду ещё!'),
-        new Review('Василий Пупкин', '3 года', 'Хороший клуб, близко к моему дому. Каждый месец собираюсь c друзьями и играю здесь. Администратор помогает в случае возникновения каких-либо проблем. Поле хорошее, чистое. Оружие качественное, подобные аналоги в магазинах стоят довольно дорого.'),
-        new Review('Иван Иваныч', '5 лет', 'Лучшего клуба в Москве не найти! Цены демократичные - в других клубах берут намного больше. У клуба очень хорошее название, а главное - оригинальное. Отдельное спасибо автору, придумавшему его. Пойду ещё поиграю.')
-    ];
-    return reviews;
-
-    // UPDATE IT
-}
-
-
-// get N non-repeating array indexes (or less if the array is shorter)
-function getRandomIndexes(N, arrlength) {
-    let selectedReviewsIndexes = [];
-    while (selectedReviewsIndexes.length < N && selectedReviewsIndexes.length < arrlength) {
-        let i = Math.floor(Math.random() * arrlength);
-        if (selectedReviewsIndexes.indexOf(i) != -1)
-            continue;
-        selectedReviewsIndexes.push(i);
+async function loadReviews() {
+    let response = await requestToApi('reviews/accepted');
+    if (!response.ok) {
+        let msg = await response.text();
+        console.log(msg);
+        document.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'error',
+                subtitle: 'Не удалось загрузить отзывы',
+                text: 'Ошибка при загрузке отзывов. Информация об ошибке выведена в консоль'
+            }
+        })); 
+        return;
     }
-    return selectedReviewsIndexes;
-}
-
-
-// get elements of array by indexes
-function getElementsByIndexes(array, indexes) {
-    let result = [];
-    indexes.forEach((index) => {
-        result.push(array[index]);
-    });
-    return result;
+    return response.json();
 }
 
 
@@ -144,13 +140,27 @@ function initModalReviews(reviews) {
 }
 
 
-// init reviews in block and modal
-function initReviews() {
-    let reviews = loadReviews();
-    initReviewsBlock(reviews);
-    initModalReviews(reviews);
+// init reviews in block and modal and set openning buttons
+async function initReviews() {
+    let reviews = await loadReviews();
+    if (reviews) {
+        try {
+            initReviewsBlock(reviews);
+            initModalReviews(reviews);
+        } catch (err) {
+            console.log(err);
+            document.dispatchEvent(new CustomEvent('modal-message-open', {
+                bubbles: true,
+                detail: {
+                    type: 'error',
+                    subtitle: 'Не удалось отобразить отзывы',
+                    text: 'Отзывы загружены, но не удалось создать карточки. Информация об ошибке выведена в консоль'
+                }
+            })); 
+        }
+    }
+    initOpenReviews();
 }
 
 
 initReviews();
-initOpenReviews();

@@ -23,7 +23,7 @@ public class RegistrationsServiceImpl implements RegistrationsService {
 
     @Override
     public List<Registration> readAll() {
-        return registrationsRepository.findAllByOrderByIdAsc();
+        return registrationsRepository.findAll();
     }
 
     @Override

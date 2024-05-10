@@ -3,35 +3,74 @@
 
 
 // possible registration states
-const RegistrationState = { ACCEPTED: 'accepted', CONSIDERATION: 'consideration', REJECTED: 'rejected' };
+const RegistrationStates = { 1: 'accept', 2: 'consider', 3: 'reject' };
 // possible registration packets
-const RegistrationPacket = { KNOWING: 'Знакомство', BEGINNER: 'Новичок', AMATEUR: 'Любитель', PROFESSIONAL: 'Профи' };
-
-
-// class of a registration
-class Registration {
-    constructor(id, name='Unknown', email='Unknown', packet=RegistrationPacket.KNOWING, date="01-01-1970", comment="No comment", state=RegistrationState.CONSIDERATION) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.packet = packet;
-        this.date = date;
-        this.comment = comment;
-        this.state = state;
-    }
-}
+const RegistrationPackets = { 1: 'Знакомство', 2: 'Новичок', 3: 'Любитель', 4: 'Профессионал' };
 
 
 // request to the server to accept the registration
-function requestAcceptRegistration(eventId) {
-    // Request for server to accept event
-    console.log(`Accept registration #${eventId}`);
+async function requestAcceptRegistration(eventId) {
+    let registrationDetails = {
+        id: eventId,
+        state: {
+            id: 1
+        }
+    };
+    let response = await requestToApi('registrations/', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        body: JSON.stringify(registrationDetails)
+    });
+    if (!response.ok) {
+        let msg = await response.text();
+        console.log(msg);
+        document.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'error',
+                subtitle: 'Не удалось изменить регистрацию',
+                text: 'Ошибка при изменении регистрации. Информация об ошибке выведена в консоль'
+            }
+        })); 
+        return false;
+    }
+    return true;
 }
 
 
 // request to the server to reject the registration
-function requestRejectRegistration(eventId) {
-    console.log(`Reject registration #${eventId}`);
+async function requestRejectRegistration(eventId) {
+    let registrationDetails = {
+        id: eventId,
+        state: {
+            id: 3
+        }
+    };
+    let response = await requestToApi('registrations/', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        body: JSON.stringify(registrationDetails)
+    });
+    if (!response.ok) {
+        let msg = await response.text();
+        console.log(msg);
+        document.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'error',
+                subtitle: 'Не удалось изменить регистрацию',
+                text: 'Ошибка при изменении регистрации. Информация об ошибке выведена в консоль'
+            }
+        })); 
+        return false;
+    }
+    return true;
 }
 
 
@@ -40,7 +79,7 @@ function createRegistrationCard(registration) {
     let registrationContainer = document.getElementById('registrations-container');
 
     let details = document.createElement('details');
-    details.className = `request-details registration-card request-${registration.state}`;
+    details.className = `request-details registration-card request-${RegistrationStates[registration.state.id]}`;
     registrationContainer.append(details);
 
     let summary = document.createElement('summary');
@@ -78,12 +117,6 @@ function createRegistrationCard(registration) {
     email.innerHTML = 'Почта:';
     content.append(email);
 
-    let packet = document.createElement('div');
-    packet.className = 'request-content-desc registration-packet';
-    packet.setAttribute('val', registration.packet);
-    packet.innerHTML = 'Пакет:';
-    content.append(packet);
-
     let date = document.createElement('div');
     date.className = 'request-content-desc registration-date';
     date.setAttribute('val', registration.date);
@@ -94,6 +127,13 @@ function createRegistrationCard(registration) {
     comment.className = 'request-content-desc registration-comment';
     comment.setAttribute('val', registration.comment);
     comment.innerHTML = 'Комментарий:';
+    content.append(comment);
+
+    let packet = document.createElement('div');
+    packet.className = 'request-content-desc registration-packet';
+    packet.setAttribute('val', RegistrationPackets[registration.packet.id]);
+    packet.innerHTML = 'Пакет:';
+    content.append(packet);
 
     let btnsContainer = document.createElement('div');
     btnsContainer.className = 'request-btns';
@@ -104,7 +144,9 @@ function createRegistrationCard(registration) {
     btnAccept.innerHTML = 'Одобрить';
     btnsContainer.append(btnAccept);
     btnAccept.addEventListener('click', () => {
-        requestAcceptRegistration(registration.id);
+        if (requestAcceptRegistration(registration.id)) {
+            details.className = `request-details registration-card request-accept`;
+        }
     });
 
     let btnReject = document.createElement('button');
@@ -112,7 +154,9 @@ function createRegistrationCard(registration) {
     btnReject.innerHTML = 'Отклонить';
     btnsContainer.append(btnReject);
     btnReject.addEventListener('click', () => {
-        requestRejectRegistration(registration.id);
+        if (requestRejectRegistration(registration.id)) {
+            details.className = `request-details registration-card request-reject`;
+        }
     });
 
     return details;
@@ -120,19 +164,51 @@ function createRegistrationCard(registration) {
 
 
 // load registrations from server
-function loadRegistrations() {
-    // here will be a script accessing the server
-
-    let registrations = [
-        new Registration(0, 'Игорь Жолобов', 'izholobov2004@gmail.com', RegistrationPacket.BEGINNER, '01-01-1970', 'Something', RegistrationState.ACCEPTED),
-        new Registration(1, 'Антон Смирнов', 'communist738@gmail.com', RegistrationPacket.AMATEUR, '02-01-1970', 'Something else', RegistrationState.CONSIDERATION),
-    ];
-    return registrations;
+async function loadRegistrations() {
+    let response = await requestToApi('registrations/');
+    if (!response.ok) {
+        let msg = await response.text();
+        console.log(msg);
+        document.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'error',
+                subtitle: 'Не удалось загрузить регистрации',
+                text: 'Ошибка при загрузке регистраций. Информация об ошибке выведена в консоль'
+            }
+        })); 
+        return;
+    }
+    return response.json();
 }
 
 
+// init registration cards
+async function initRegistrations() {
+    let registrations = await loadRegistrations();
+    if (registrations) {
+        try {
+            Array.from(registrations).forEach((registration) => {
+                try {
+                    createRegistrationCard(registration);
+                } catch (err) {
+                    console.log(err);
+                    console.log(registration);
+                }
+            });
+        } catch (err) {
+            console.log(err);
+            document.dispatchEvent(new CustomEvent('modal-message-open', {
+                bubbles: true,
+                detail: {
+                    type: 'error',
+                    subtitle: 'Не удалось отобразить регистрации',
+                    text: 'Регистрации загружены, но не удалось создать карточки. Информация об ошибке выведена в консоль'
+                }
+            })); 
+        }
+    }
+}
 
-let registrations = loadRegistrations();
-registrations.forEach((registration) => {
-    createRegistrationCard(registration);
-});
+
+initRegistrations();

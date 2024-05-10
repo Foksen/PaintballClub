@@ -32,6 +32,7 @@
         <section class="section-container section-request">
             <div class="wrapper">
                 <h2 class="section-title request-title">Отзывы</h2>
+                <!-- WIP
                 <div class="filters-container">
                     <input checked class="filter-cb" type="checkbox" name="reviews-consideration" id="cb-reviews-consideration" hidden>
                     <label class="filter-cb-label" for="cb-reviews-consideration">
@@ -62,32 +63,11 @@
                         </div>
                         <div class="filter-cb-text">Отклонённые</div>
                     </label>
-                    
                 </div>
+                -->
 
                 <div class="requests-container" id="reviews-container">
-                    <!-- EXAMPLE
-                    <details open class="request-details request-accepted review-card">
-                        <summary class="request-summary">
-                            <svg class="request-summary-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                <polygon points="396.6,160 416,180.7 256,352 96,180.7 115.3,160 256,310.5 "/>
-                            </svg>
-                            <span class="request-summary-text" val="123">Отзыв #</span>
-                        </summary>
-                        
-                        <div class="request-content">
-                            <div class="request-content-desc review-name" val="Игорь Жолобов">Имя:</div>
-                            <div class="request-content-desc review-email" val="izholobov2004@gmail.com">Почта:</div>
-                            <div class="request-content-desc review-exp" val="1 год">Опыт:</div>
-                            <div class="request-content-desc review-text" val="Лучшего клуба в Москве не найти! Цены демократичные - в других клубах берут намного больше. У клуба очень хорошее название, а главное - оригинальное. Отдельное спасибо автору, придумавшему его. Пойду ещё поиграю.">Текст:</div>
-                        </div>
-
-                        <div class="request-btns">
-                            <button class="request-btn request-btn-accept review-accept-btn">Одобрить</button>
-                            <button class="request-btn request-btn-reject review-reject-btn">Отклонить</button>
-                        </div>
-                    </details> -->
-
+                    
                 </div>
             </div>
         </section>
@@ -97,7 +77,25 @@
         <p class="footer-text">Made by <a href="https://t.me/savage_foksen" class="footer-link" target="_blank">Foksen</a> @ <span class="current-year"></span></p>
     </footer>
 
+    <div class="modal" id="modal-message">
+        <div class="modal-panel">
+            <button class="panel-close-btn">
+                <svg class="panel-close-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                </svg>
+            </button>
+            <div class="panel-message">
+                <div class="panel-message-icon"></div>
+                <p class="panel-message-subtitle"></p>
+                <p class="panel-message-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/webconfig.js"></script>
     <script src="../scripts/update-date.js"></script>
+    <script src="../scripts/modal/modal-close.js"></script>
+    <script src="../scripts/modal/modal-message.js"></script>
     <script src="../scripts/admin/reviews.js"></script>
 </body>
 </html>

@@ -2,6 +2,9 @@
 /* SCRIPT OF SPECIFIC BEHAVIOR FOR A MODAL FORM */
 
 
+const PacketIds = { 'knowing': 1, 'beginner': 2, 'amateur': 3, 'professional': 4 };
+
+
 // open a registration modal using certain buttons
 function initOpenRegistration() {
     let btns = document.getElementsByClassName('btn-open-modal-registration');
@@ -30,24 +33,61 @@ function updateRegistrationDate(form) {
 }
 
 
+// send a request to put registration into the database
+async function sendRegistration(registration) {
+    let response = await requestToApi('registrations/', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        body: JSON.stringify(registration)
+    });
+    if (!response.ok) {
+        let msg = await response.text();
+        console.log(msg);
+        document.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'error',
+                subtitle: 'Не удалось отправить заявку',
+                text: 'Техническая ошибка при отправке заявку. Информация об ошибке выведена в консоль'
+            }
+        })); 
+        return false;
+    }
+    return true;
+}
+
+
 // function when submitting a form
 function registrationSubmitFunction(event) {
     event.preventDefault();
     let data = new FormData(event.target);
-    console.log(JSON.stringify(Object.fromEntries(data)));
-
-    event.target.dispatchEvent(new CustomEvent('modal-close', { bubbles: true }));
-
-    event.target.dispatchEvent(new CustomEvent('modal-message-open', {
-        bubbles: true,
-        detail: {
-            type: 'question',
-            subtitle: 'Registration result',
-            text: 'No result'
+    let registration = {
+        name: data.get('name'),
+        email: data.get('email'),
+        date: Math.floor(Date.parse(data.get('date')) / 1000) * 1000,
+        comment: data.get('comment'),
+        packet: {
+            id: PacketIds[data.get('packet')]
+        },
+        state: {
+            id: 2
         }
-    })); 
+    }
+    if (sendRegistration(registration)) {
+        event.target.dispatchEvent(new CustomEvent('modal-close', { bubbles: true }));
+        event.target.dispatchEvent(new CustomEvent('modal-message-open', {
+            bubbles: true,
+            detail: {
+                type: 'success',
+                subtitle: 'Заявка отправлена',
+                text: 'Ваша заявка успешно отправлена! Администратор просмотрит её и свяжется с вами по почте'
+            }
+        })); 
+    }
 }
-
 
 // init form
 function initRegistrationForm() {

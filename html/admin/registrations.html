@@ -66,7 +66,25 @@
         <p class="footer-text">Made by <a href="https://t.me/savage_foksen" class="footer-link" target="_blank">Foksen</a> @ <span class="current-year"></span></p>
     </footer>
 
-    <script src="./../scripts/update-date.js"></script>
-    <script src="./../scripts/admin/registrations.js"></script>
+    <div class="modal" id="modal-message">
+        <div class="modal-panel">
+            <button class="panel-close-btn">
+                <svg class="panel-close-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                </svg>
+            </button>
+            <div class="panel-message">
+                <div class="panel-message-icon"></div>
+                <p class="panel-message-subtitle"></p>
+                <p class="panel-message-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/webconfig.js"></script>
+    <script src="../scripts/update-date.js"></script>
+    <script src="../scripts/modal/modal-close.js"></script>
+    <script src="../scripts/modal/modal-message.js"></script>
+    <script src="../scripts/admin/registrations.js"></script>
 </body>
 </html>

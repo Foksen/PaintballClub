@@ -1,5 +1,11 @@
 package ru.mirea.pcmirea.conroller;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,17 +16,28 @@ import ru.mirea.pcmirea.service.ReviewsServiceImpl;
 
 @RestController
 @RequestMapping("/reviews")
+@CrossOrigin
 public class ReviewsController {
     @Autowired
     private ReviewsServiceImpl reviewsService;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @GetMapping("/")
     public ResponseEntity<?> getReviews(@RequestParam(required = false) Integer id) {
         try {
             if (id == null) {
+                CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+                CriteriaQuery<Review> reviewCriteriaQuery = builder.createQuery(Review.class);
+                Root<Review> root = reviewCriteriaQuery.from(Review.class);
+                reviewCriteriaQuery
+                        .select(root)
+                        .orderBy(builder.asc(root.get("id")));
+                Query<Review> query = (Query<Review>) entityManager.createQuery(reviewCriteriaQuery);
                 return ResponseEntity
                         .status(HttpStatus.OK)
-                        .body(reviewsService.readAll());
+                        .body(query.getResultList());
             }
             else {
                 return ResponseEntity
@@ -34,8 +51,29 @@ public class ReviewsController {
         }
     }
 
+    @GetMapping("/accepted")
+    public ResponseEntity<?> getAcceptedReviews() {
+        try {
+            CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Review> reviewCriteriaQuery = builder.createQuery(Review.class);
+            Root<Review> root = reviewCriteriaQuery.from(Review.class);
+            reviewCriteriaQuery
+                    .select(root)
+                    .where(builder.equal(root.get("state").get("name"), "accept"))
+                    .orderBy(builder.asc(root.get("id")));
+            Query<Review> query = (Query<Review>) entityManager.createQuery(reviewCriteriaQuery);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(query.getResultList());
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
+    }
+
     @PutMapping("/")
-    public ResponseEntity<?> createReview(Review review) {
+    public ResponseEntity<?> createReview(@RequestBody Review review) {
         try {
             reviewsService.create(review);
             return ResponseEntity
@@ -49,14 +87,14 @@ public class ReviewsController {
     }
 
     @PatchMapping("/")
-    public ResponseEntity<?> updateReview(Integer id, Review review) {
+    public ResponseEntity<?> updateReview(@RequestBody Review review) {
         try {
-            if (reviewsService.updateNonNull(review, id)) {
+            if (reviewsService.updateNonNull(review, review.getId())) {
                 return ResponseEntity
                         .status(HttpStatus.OK)
                         .body("Review updated");
             }
-            throw new ReviewNotFoundException(Integer.toString(id));
+            throw new ReviewNotFoundException(Integer.toString(review.getId()));
         } catch (ReviewNotFoundException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -69,7 +107,7 @@ public class ReviewsController {
     }
 
     @DeleteMapping("/")
-    public ResponseEntity<?> deleteRegistration(Integer id) {
+    public ResponseEntity<?> deleteRegistration(@RequestBody Integer id) {
         try {
             if (reviewsService.delete(id)) {
                 return ResponseEntity
