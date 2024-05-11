@@ -39,6 +39,8 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./html:/usr/share/nginx/html:ro
+    restart:
+      always
     depends_on:
       database:
         condition: service_healthy
