@@ -6,7 +6,7 @@ if (hostname == 'pcmirea.ru') {
     backendHost = 'https://pcmirea.ru/api/';
 }
 else {
-    backendHost = 'http://localhost:8080/api/';
+    backendHost = 'http://localhost:80/api/';
 }
 
 const API_ROOT = backendHost;
@@ -16,6 +16,7 @@ async function requestToApi(route, details) {
         return await fetch(`${API_ROOT}${route}`, details)
     } catch (error) {
         console.log(error);
+        console.log(`${API_ROOT}${route}`);
         document.dispatchEvent(new CustomEvent('modal-message-open', {
             bubbles: true,
             detail: {
