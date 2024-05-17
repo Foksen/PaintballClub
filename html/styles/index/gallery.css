@@ -1,5 +1,6 @@
 .section-gallery {
     background-color: var(--surface-800);
+    scroll-margin-top: 4rem;
 }
 
 .gallery-container {

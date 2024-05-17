@@ -1,3 +1,7 @@
+.section-reviews {
+    scroll-margin-top: 4rem;
+}
+
 .reviews-container {
     display: flex;
     align-items: center;

@@ -1,5 +1,6 @@
 .section-options {
     background-color: var(--surface-800);
+    scroll-margin-top: 4rem;
 }
 
 .options-grid {
