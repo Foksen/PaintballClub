@@ -12,14 +12,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mirea.pcmirea.exception.ReviewNotFoundException;
 import ru.mirea.pcmirea.model.Review;
-import ru.mirea.pcmirea.service.ReviewsServiceImpl;
+import ru.mirea.pcmirea.service.AdminEmailsService;
+import ru.mirea.pcmirea.service.EmailService;
+import ru.mirea.pcmirea.service.ReviewsService;
+import ru.mirea.pcmirea.util.EmailFormatter;
 
 @RestController
 @RequestMapping("/reviews")
 @CrossOrigin
 public class ReviewsController {
     @Autowired
-    private ReviewsServiceImpl reviewsService;
+    private ReviewsService reviewsService;
+
+    @Autowired
+    private AdminEmailsService adminEmailsService;
+
+    @Autowired
+    private EmailService emailService;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -76,6 +85,11 @@ public class ReviewsController {
     public ResponseEntity<?> createReview(@RequestBody Review review) {
         try {
             reviewsService.create(review);
+            adminEmailsService.readAll().forEach((adminEmail) -> {
+                emailService.sendEmail(adminEmail.getEmail(),
+                        "Пользователь оставил комментарий",
+                        EmailFormatter.formatEmailReviewsPut(review));
+            });
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("Review created");

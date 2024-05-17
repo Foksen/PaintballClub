@@ -12,14 +12,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mirea.pcmirea.exception.RegistrationNotFoundException;
 import ru.mirea.pcmirea.model.Registration;
-import ru.mirea.pcmirea.service.RegistrationsServiceImpl;
+import ru.mirea.pcmirea.service.AdminEmailsService;
+import ru.mirea.pcmirea.service.EmailService;
+import ru.mirea.pcmirea.service.RegistrationsService;
+import ru.mirea.pcmirea.util.EmailFormatter;
 
 @RestController()
 @RequestMapping("/registrations")
 @CrossOrigin
 public class RegistrationsController {
     @Autowired
-    private RegistrationsServiceImpl registrationsService;
+    private RegistrationsService registrationsService;
+
+    @Autowired
+    private AdminEmailsService adminEmailsService;
+
+    @Autowired
+    private EmailService emailService;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -56,6 +65,11 @@ public class RegistrationsController {
     public ResponseEntity<?> createRegistration(@RequestBody Registration registration) {
         try {
             registrationsService.create(registration);
+            adminEmailsService.readAll().forEach((adminEmail) -> {
+                emailService.sendEmail(adminEmail.getEmail(),
+                        "Пользователь хочет записаться на игру",
+                        EmailFormatter.formatEmailRegistrationsPut(registration));
+            });
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("Registration created");
