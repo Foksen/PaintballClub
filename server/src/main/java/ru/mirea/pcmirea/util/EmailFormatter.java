@@ -1,11 +1,9 @@
 package ru.mirea.pcmirea.util;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import ru.mirea.pcmirea.model.Registration;
 import ru.mirea.pcmirea.model.Review;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 
 public class EmailFormatter {
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
