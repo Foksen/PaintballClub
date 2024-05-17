@@ -2,6 +2,7 @@ package ru.mirea.pcmirea.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mirea.pcmirea.model.Registration;
 import ru.mirea.pcmirea.repository.RegistrationsRepository;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 @Slf4j
+@Transactional
 public class RegistrationsServiceImpl implements RegistrationsService {
     private final RegistrationsRepository registrationsRepository;
 
