@@ -47,6 +47,14 @@
     background-image: url(../../assets/images/AdminReviews.jpg);
 }
 
+#control-container-team::before {
+    background-image: url(../../assets/images/AdminTeam.jpg);
+}
+
+#control-container-emails::before {
+    background-image: url(../../assets/images/AdminEmails.jpg);
+}
+
 .control-heading {
     margin-bottom: 0.5rem;
     font-size: 1.5rem;

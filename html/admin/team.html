@@ -30,42 +30,13 @@
     <main class="main">
         <section class="section-container section-request">
             <div class="wrapper">
-                <h2 class="section-title request-title">Отзывы</h2>
-                <!-- WIP
+                <h2 class="section-title request-title">Команда</h2>
                 <div class="filters-container">
-                    <input checked class="filter-cb" type="checkbox" name="reviews-consideration" id="cb-reviews-consideration" hidden>
-                    <label class="filter-cb-label" for="cb-reviews-consideration">
-                        <div class="filter-cb-icon-container">
-                            <svg class="filter-cb-icon" viewBox="0 0 18 15" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6,10.2 L1.8,6 L0.4,7.4 L6,13 L18,1 L16.6,-0.4 L6,10.2 Z" id="Shape"/>
-                            </svg>
-                        </div>
-                        <div class="filter-cb-text">На рассмотрении</div>
-                    </label>
-
-                    <input class="filter-cb" type="checkbox" name="reviews-accepted" id="cb-reviews-accepted" hidden>
-                    <label class="filter-cb-label" for="cb-reviews-accepted">
-                        <div class="filter-cb-icon-container">
-                            <svg class="filter-cb-icon" viewBox="0 0 18 15" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6,10.2 L1.8,6 L0.4,7.4 L6,13 L18,1 L16.6,-0.4 L6,10.2 Z" id="Shape"/>
-                            </svg>
-                        </div>
-                        <div class="filter-cb-text">Одобренные</div>
-                    </label>
-
-                    <input class="filter-cb" type="checkbox" name="reviews-rejected" id="cb-reviews-rejected" hidden>
-                    <label class="filter-cb-label" for="cb-reviews-rejected">
-                        <div class="filter-cb-icon-container">
-                            <svg class="filter-cb-icon" viewBox="0 0 18 15" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6,10.2 L1.8,6 L0.4,7.4 L6,13 L18,1 L16.6,-0.4 L6,10.2 Z" id="Shape"/>
-                            </svg>
-                        </div>
-                        <div class="filter-cb-text">Отклонённые</div>
-                    </label>
+                    <button class="filters-button filters-button-positive">Добавить</button>
+                    <button class="filters-button filters-button-negative">Удалить</button>
                 </div>
-                -->
 
-                <div class="requests-container" id="reviews-container">
+                <div class="requests-container" id="team-container">
                     
                 </div>
             </div>
@@ -91,10 +62,43 @@
         </div>
     </div>
 
-    <script src="../scripts/webconfig.js"></script>
+    <div class="modal" id="modal-team-add">
+        <div class="modal-panel">
+            <button class="panel-close-btn">
+                <svg class="panel-close-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                </svg>
+            </button>
+            <h3 class="panel-title">Добавить админа</h3>
+            <form action="" class="panel-form panel-shrinking" id="form-team-add" autocomplete="off">
+                <p class="panel-form-subtitle">Имя</p>
+                <input name="username" type="text" class="panel-input" placeholder="User" required>
+
+                <p class="panel-form-subtitle">Пароль</p>
+                <input name="password" type="password" class="panel-input" placeholder="qwerty" required>
+
+                <input type="submit" value="Отправить" class="panel-submit" disabled>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-team-del">
+        <div class="modal-panel">
+            <button class="panel-close-btn">
+                <svg class="panel-close-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                </svg>
+            </button>
+            <h3 class="panel-title">Удалить админа</h3>
+            <form action="" class="panel-form panel-shrinking" id="form-team-del" autocomplete="off">
+                <p class="panel-form-subtitle">ИД</p>
+                <input name="id" type="text" class="panel-input" placeholder="123" required>
+
+                <input type="submit" value="Отправить" class="panel-submit" disabled>
+            </form>
+        </div>
+    </div>
+
     <script src="../scripts/update-date.js"></script>
-    <script src="../scripts/modal/modal-close.js"></script>
-    <script src="../scripts/modal/modal-message.js"></script>
-    <script src="../scripts/admin/reviews.js"></script>
 </body>
 </html>

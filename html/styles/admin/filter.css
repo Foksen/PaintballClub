@@ -60,3 +60,38 @@
 .filter-cb:checked + .filter-cb-label .filter-cb-icon-container .filter-cb-icon {
     opacity: 1;
 }
+
+.filters-button {
+    padding: 0.75rem 0;
+    width: 9rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--surface-0);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.filters-button-positive {
+    background-color: var(--green);
+}
+
+.filters-button-positive:hover {
+    background-color: var(--green-hover);
+}
+
+.filters-button-positive:active {
+    background-color: var(--green-active);
+}
+
+.filters-button-negative {
+    background-color: var(--red);
+} 
+
+.filters-button-negative:hover {
+    background-color: var(--red-hover);
+} 
+
+.filters-button-negative:active {
+    background-color: var(--red-active);
+} 
