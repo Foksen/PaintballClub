@@ -42,3 +42,10 @@ CREATE TABLE IF NOT EXISTS registrations (
     FOREIGN KEY(packet_id) REFERENCES packets(id),
     FOREIGN KEY(state_id) REFERENCES review_states(id)
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(32) UNIQUE NOT NULL,
+    password VARCHAR(32) NOT NULL,
+    role VARCHAR(32) NOT NULL
+);
