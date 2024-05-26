@@ -17,6 +17,7 @@ async function requestAcceptReview(eventId) {
     let response = await requestToApi('reviews/', {
             method: 'PATCH',
             headers: {
+                'Authorization': `Bearer ${getCookie('access-token')}`,
                 'Content-Type': 'application/json'
             },
             mode: 'cors',
@@ -50,6 +51,7 @@ async function requestRejectReview(eventId) {
     let response = await requestToApi('reviews/', {
             method: 'PATCH',
             headers: {
+                'Authorization': `Bearer ${getCookie('access-token')}`,
                 'Content-Type': 'application/json'
             },
             mode: 'cors',
@@ -157,7 +159,11 @@ function createReviewCard(review) {
 
 // load reviews from server
 async function loadReviews() {
-    let response = await requestToApi('reviews/');
+    let response = await requestToApi('reviews/' , {
+        headers: {
+            'Authorization': `Bearer ${getCookie('access-token')}`
+        }
+    });
     if (!response.ok) {
         let msg = await response.text();
         console.log(msg);

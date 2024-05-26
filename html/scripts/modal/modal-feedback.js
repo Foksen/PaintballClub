@@ -66,6 +66,8 @@ function feedbackSubmitFunction(event) {
             }
         })); 
     }
+    event.target.reset();
+    updateFormSubmit(event.target);
 }
 
 

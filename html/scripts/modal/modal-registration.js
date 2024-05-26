@@ -87,6 +87,8 @@ function registrationSubmitFunction(event) {
             }
         })); 
     }
+    event.target.reset();
+    updateFormSubmit(event.target);
 }
 
 // init form

@@ -19,6 +19,7 @@ async function requestAcceptRegistration(eventId) {
     let response = await requestToApi('registrations/', {
         method: 'PATCH',
         headers: {
+            'Authorization': `Bearer ${getCookie('access-token')}`,
             'Content-Type': 'application/json'
         },
         mode: 'cors',
@@ -52,6 +53,7 @@ async function requestRejectRegistration(eventId) {
     let response = await requestToApi('registrations/', {
         method: 'PATCH',
         headers: {
+            'Authorization': `Bearer ${getCookie('access-token')}`,
             'Content-Type': 'application/json'
         },
         mode: 'cors',
@@ -165,7 +167,11 @@ function createRegistrationCard(registration) {
 
 // load registrations from server
 async function loadRegistrations() {
-    let response = await requestToApi('registrations/');
+    let response = await requestToApi('registrations/', {
+        headers: {
+            'Authorization': `Bearer ${getCookie('access-token')}`
+        }
+    });
     if (!response.ok) {
         let msg = await response.text();
         console.log(msg);

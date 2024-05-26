@@ -14,10 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ru.mirea.pcmirea.dpo.JwtAuthenticationResponse;
-import ru.mirea.pcmirea.dpo.SignInRequest;
 import ru.mirea.pcmirea.service.JwtService;
-import ru.mirea.pcmirea.service.UserService;
+import ru.mirea.pcmirea.service.UserServiceImpl;
 
 import java.io.IOException;
 
@@ -27,7 +25,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     public static final String BEARER_PREFIX = "Bearer ";
     public static final String HEADER_NAME = "Authorization";
     private final JwtService jwtService;
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
 
     @Override
@@ -43,6 +41,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         String jwt = authHeader.substring(BEARER_PREFIX.length());
+
+        if (StringUtils.isEmpty(jwt) || StringUtils.countMatches(jwt, '.') != 2) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String username = jwtService.extractUserName(jwt);
 
         if (StringUtils.isNoneEmpty(username) && SecurityContextHolder.getContext().getAuthentication() == null) {
