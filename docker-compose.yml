@@ -26,6 +26,9 @@ services:
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       DB_HOST: database
       DB_PORT: 5432
+      GMAIL_LOGIN: ${GMAIL_LOGIN}
+      GMAIL_APP_PASSWORD: ${GMAIL_APP_PASSWORD}
+      TOKEN_SIGNING_KEY: ${TOKEN_SIGNING_KEY}
     restart:
       always
     depends_on:
