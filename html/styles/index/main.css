@@ -52,11 +52,11 @@
 }
 
 .main-player-left {
-    transform: translateX(-120%);
+    transform: translateX(-123%);
 }
 
 .main-player-right {
-    transform: translateX(15%);
+    transform: translateX(20%);
 }
 
 
